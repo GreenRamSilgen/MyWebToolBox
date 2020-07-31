@@ -29,6 +29,9 @@ nav{
     text-align: center;
 }
 
+.navMenu__Group li a {
+    
+}
 .navMenu__Group li a:hover {
     background-color: green;
     display:block
