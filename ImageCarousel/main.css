@@ -1,0 +1,48 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.carouselContainer{
+    width: 90%;
+    margin: auto;
+}
+
+.imgCarousel{
+    /* display:grid;
+    grid-template-columns: auto 1fr auto; */
+    background-color: gray;
+
+
+    display: flex;
+}
+
+.imgCarousel__middle{
+    overflow-x: hidden;
+}
+.imgCarousel__container{
+    height: fit-content;
+    display: flex;
+    background-color: lawngreen;
+    width: 300vw;
+
+    transition: transform 1s ease-out;
+}
+
+.slideImg{
+    text-align: center;
+}
+
+.slideLeft{
+    transform: translateX(-100vw);
+    transition: transform 1s ease-out;
+    animation-fill-mode: forwards;
+}
+img{
+    float: left;
+    width: 20vw;
+    height: 40vh;
+    background-size: cover;
+    padding: 10px 10px;
+    /* max-width: 60%;
+    padding: 5px 0px; */
+}
