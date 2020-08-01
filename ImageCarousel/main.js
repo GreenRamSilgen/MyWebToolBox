@@ -5,31 +5,44 @@
  * https://media.pitchfork.com/photos/5ee25be2ca5f171c3b76fb77/master/w_1600%2Cc_limit/BTS.jpg
  * https://www.hypable.com/wp-content/uploads/2019/03/skool-luv-affair-special-addition.jpg
  */
+let panelNum = 0;
 
 const leftBtn = document.querySelector('.imgCarousel__leftBtn');
+const rightBtn = document.querySelector('.imgCarousel__rightBtn');
+const content = document.querySelector('.imgCarousel__container');
 
-leftBtn.addEventListener('click', moveCarousel);
+leftBtn.addEventListener('click', moveCarouselLeft);
+rightBtn.addEventListener('click', moveCarouselRight);
 
-function moveCarousel() {
+function moveCarouselLeft() {
+    if (content.style.transform) {
+        if (panelNum < 2) { //change this to stop left button functionality timing
+            let num = extractNum(content.style.transform);
+            content.style.transform = translateCalc(num, -100);
+            panelNum++;
+            console.log(panelNum);
+        }
+    } else {
 
-    const content = document.querySelector('.imgCarousel__container');
-    if(content.style.transform){
-        console.log("has transform");
-        console.log(content.style.transform);
-        let num = content.style.transform;
-        console.log();
-        content.style.transform = `translateX(-${Number(num.substr(12,3)) + 100}vw)`;
-    }
-    else{
-    content.style.translate = 'transform 1s ease-out';
-    content.style.transform = 'translateX(-100vw)';
-    }
-    // if (content.classList.contains('slideLeft')) {
-    //     content.classList.remove('slideLeft');
-    //     //console.log("YO");
-    //     //setTimeout(content.classList.add('slideLeft'),300);
+        content.style.transform = 'translateX(-100vw)';
         
-    // } else {
-    //     content.classList.add('slideLeft');
-    // }
+        panelNum++;
+    }
+}
+
+function moveCarouselRight() {
+    if (panelNum > 0) {
+        let num = extractNum(content.style.transform)
+        content.style.transform = translateCalc(num, 100);
+        panelNum--;
+    }
+}
+
+function translateCalc(originalValue, moveAmt) {
+    return `translateX(${originalValue+moveAmt}vw)`;
+}
+
+function extractNum(word){
+    let backWord = word.substr(11);
+    return Number(backWord.split('v')[0]);
 }
